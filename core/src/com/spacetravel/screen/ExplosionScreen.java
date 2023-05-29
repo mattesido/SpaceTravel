@@ -5,33 +5,48 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.spacetravel.SpaceTravel;
 
-public class VictoryScreen implements Screen {
-
+public class ExplosionScreen implements Screen {
     final SpaceTravel game;
     Stage stage;
     OrthographicCamera camera;
 
     Skin skin;
+    Button restartButton;
+    Texture ExplosionScreen;
+    Sprite ExplosionSprite;
 
-    Texture victoryScreen;
-    Sprite victorySprite;
 
-
-    public VictoryScreen(final SpaceTravel game) {
+    public ExplosionScreen(final SpaceTravel game, final String planetName) {
         this.game = game;
         this.stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
         this.skin = new Skin(Gdx.files.internal(game.stylePath));
         this.camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
-        victoryScreen = new Texture(Gdx.files.internal("landed.jpeg"));
-        victorySprite = new Sprite(victoryScreen);
-        victorySprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        ExplosionScreen = new Texture(Gdx.files.internal("screen/shipexplosion.jpeg"));
+        ExplosionSprite = new Sprite(ExplosionScreen);
+        ExplosionSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        restartButton = new TextButton("Restart", game.textButtonStyle);
+        restartButton.setPosition((float) (Gdx.graphics.getWidth() / 2.7 ), (float) (Gdx.graphics.getHeight() / 4.5));
+        restartButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
+                game.setScreen(new PlanetScreen(game,planetName));
+            }
+        });
+
+        stage.addActor(restartButton);
+
     }
 
     @Override
@@ -42,7 +57,7 @@ public class VictoryScreen implements Screen {
     @Override
     public void render(float delta) {
         game.batch.begin();
-        victorySprite.draw(game.batch);
+        ExplosionSprite.draw(game.batch);
 
         game.batch.end();
 
@@ -53,7 +68,7 @@ public class VictoryScreen implements Screen {
 
         game.batch.begin();
 
-        victorySprite.draw(game.batch, 1f);
+        ExplosionSprite.draw(game.batch, 1f);
 
         game.batch.end();
 
@@ -84,6 +99,8 @@ public class VictoryScreen implements Screen {
     public void dispose() {
         stage.dispose();
         skin.dispose();
-        victoryScreen.dispose();
+        ExplosionScreen.dispose();
     }
 }
+
+

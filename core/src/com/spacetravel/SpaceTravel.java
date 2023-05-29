@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.spacetravel.screen.WelcomeScreen;
 
 public class SpaceTravel extends Game {
@@ -22,6 +19,7 @@ public class SpaceTravel extends Game {
     public SelectBox.SelectBoxStyle selectBoxStyle;
     public TextField.TextFieldStyle texFieldStyle;
 
+
     @Override
     public void create() {
         this.skin = new Skin(Gdx.files.internal(stylePath));
@@ -33,6 +31,7 @@ public class SpaceTravel extends Game {
         selectBoxStyle = skin1.get("default", SelectBox.SelectBoxStyle.class);
         selectBoxStyle.font = bigFont;
         texFieldStyle = skin.get("default", TextField.TextFieldStyle.class);
+
         this.setScreen(new WelcomeScreen(this));
     }
 
