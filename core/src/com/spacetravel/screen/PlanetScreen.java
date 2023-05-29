@@ -66,6 +66,7 @@ public class PlanetScreen implements Screen {
         checkButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+
             switch(planetName){
 
                 case "Mercury":
@@ -136,7 +137,7 @@ public class PlanetScreen implements Screen {
         helpButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Dialog help = new Dialog("Set Up Spaceship",skin);
+                help = new Dialog("Set Up Spaceship",skin);
                 switch(planetName){
 
                     case "Mercury":
