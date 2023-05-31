@@ -33,7 +33,7 @@ public class PlanetScreen implements Screen {
 
     Texture planetScreen;
     Sprite planetSprite;
-
+    String selected;
     public PlanetScreen(final SpaceTravel game, final String planetName) {
         this.game = game;
         this.stage = new Stage();
@@ -92,7 +92,7 @@ public class PlanetScreen implements Screen {
 
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
 
@@ -101,7 +101,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
                 case "Moon":
@@ -109,7 +109,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
 
@@ -118,7 +118,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
 
@@ -127,7 +127,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
 
@@ -136,7 +136,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
 
@@ -145,7 +145,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
 
@@ -154,7 +154,7 @@ public class PlanetScreen implements Screen {
                         game.setScreen(new PlayScreen(game));
                     }
                     else {
-                        game.setScreen(new ExplosionScreen(game, planetName));
+                        game.setScreen(new ExplosionScreen(game, planetName,selected));
                     }
                     break;
             }
@@ -253,6 +253,8 @@ public class PlanetScreen implements Screen {
         stage.addActor(helpButton);
 
     }
+
+
 
     @Override
     public void show() {

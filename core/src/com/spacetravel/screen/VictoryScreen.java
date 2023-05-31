@@ -7,10 +7,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.spacetravel.SpaceTravel;
+
 
 public class VictoryScreen implements Screen {
 
@@ -23,15 +25,34 @@ public class VictoryScreen implements Screen {
     Sprite victorySprite;
     TextButton restartButton;
 
-    public VictoryScreen(final SpaceTravel game) {
+
+    public VictoryScreen(final SpaceTravel game, final String selected) {
         this.game = game;
         this.stage = new Stage();
+
         Gdx.input.setInputProcessor(stage);
 
         this.skin = new Skin(Gdx.files.internal(game.stylePath));
         this.camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
-        victoryScreen = new Texture(Gdx.files.internal("screen/landed.jpeg"));
+        switch(selected){
+            case "NASA":
+                victoryScreen = new Texture(Gdx.files.internal("screen/landed.jpeg"));
+                break;
+            case "USSR":
+                victoryScreen = new Texture(Gdx.files.internal("space agencies/ussr3.jpg"));
+                break;
+            case "CNSP":
+                victoryScreen = new Texture(Gdx.files.internal("space agencies/china3.jpeg"));
+                break;
+            case "EASA":
+                victoryScreen = new Texture(Gdx.files.internal("space agencies/easa2.jpg"));
+                break;
+            case "SPACEX":
+                victoryScreen = new Texture(Gdx.files.internal("space agencies/spacex2.jpeg"));
+                break;
+        }
+
         victorySprite = new Sprite(victoryScreen);
         victorySprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -41,7 +62,8 @@ public class VictoryScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
-                game.setScreen(new WelcomeScreen(game));
+
+                game.setScreen(new WelcomeScreen(game,  selected));
             }
         });
         stage.addActor(restartButton);

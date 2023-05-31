@@ -52,7 +52,7 @@ public class GameScreen implements Screen {
 	ArrayList<Explosion> explosions;
 
 	Texture blank;
-
+	String selected;
 
 	BitmapFont scoreFont;
 
@@ -235,7 +235,7 @@ public class GameScreen implements Screen {
 					score += 100;
 				}
 				if(score == 3000){
-					game.setScreen(new VictoryScreen(game));
+					game.setScreen(new VictoryScreen(game,selected));
 				}
 			}
 		}

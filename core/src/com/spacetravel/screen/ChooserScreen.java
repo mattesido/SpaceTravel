@@ -8,15 +8,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.spacetravel.SpaceTravel;
 
-
-public class WelcomeScreen implements Screen {
-
+public class ChooserScreen implements Screen {
     final SpaceTravel game;
     Stage stage;
     OrthographicCamera camera;
@@ -29,31 +29,15 @@ public class WelcomeScreen implements Screen {
     SelectBox<String> selectBox;
 
     TextButton exitButton;
-    public WelcomeScreen(final SpaceTravel game, String selected) {
+    public ChooserScreen(final SpaceTravel game) {
         this.game = game;
         this.skin = new Skin(Gdx.files.internal(game.stylePath));
         this.stage = new Stage();
         this.camera = new OrthographicCamera(1920, 1080);
         camera.setToOrtho(false, 1920, 1080);
         Gdx.input.setInputProcessor(stage);
-switch(selected){
-    case "NASA":
-    backgroundScreen = new Texture(Gdx.files.internal("screen/moon.jpg"));
-    break;
-    case "USSR":
-        backgroundScreen = new Texture(Gdx.files.internal("space agencies/ussr2.jpg"));
-        break;
-    case "CNSP":
-        backgroundScreen = new Texture(Gdx.files.internal("space agencies/china2.jpeg"));
-        break;
-    case "EASA":
-        backgroundScreen = new Texture(Gdx.files.internal("space agencies/easa1.jpg"));
-        break;
-    case "SPACEX":
-        backgroundScreen = new Texture(Gdx.files.internal("space agencies/spacex3.jpeg"));
-        break;
-}
 
+        backgroundScreen = new Texture(Gdx.files.internal("screen/space.jpg"));
         backgroundSprite = new Sprite(backgroundScreen);
         backgroundSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -62,18 +46,17 @@ switch(selected){
         selectBox = new SelectBox<>(game.selectBoxStyle);
         selectBox.setWidth(600);
         Array<String> classArray = new Array<>();
-        classArray.addAll("Mercury", "Venus","Moon","Mars","Jupiter","Saturn","Uranus","Neptune");
+        classArray.addAll("USSR", "EASA", "NASA", "SPACEX", "CNSP");
         selectBox.setItems(classArray);
         selectBox.getList().getStyle().font = game.bigFont;
         selectBox.setPosition((float) (Gdx.graphics.getWidth()* 2/3), (float) (Gdx.graphics.getHeight() * 8.6/10));
 
         startButton = new TextButton(" START ", game.textButtonStyle);
         startButton.setPosition((float) (Gdx.graphics.getWidth() / 2.7 ), (float) (Gdx.graphics.getHeight() / 4.5));
-
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new PlanetScreen(game, selectBox.getSelected()));
+                game.setScreen(new WelcomeScreen(game,selectBox.getSelected()));
             }
         });
 
@@ -153,3 +136,5 @@ switch(selected){
 
     }
 }
+
+

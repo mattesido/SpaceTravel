@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -20,20 +21,37 @@ public class ExplosionScreen implements Screen {
 
     Skin skin;
     Button restartButton;
-    Texture ExplosionScreen;
-    Sprite ExplosionSprite;
+    Texture explosionScreen;
+    Sprite explosionSprite;
 
-
-    public ExplosionScreen(final SpaceTravel game, final String planetName) {
+    public ExplosionScreen(final SpaceTravel game, final String planetName, final String selected) {
         this.game = game;
+
         this.stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         this.skin = new Skin(Gdx.files.internal(game.stylePath));
         this.camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
-        ExplosionScreen = new Texture(Gdx.files.internal("screen/shipexplosion.jpeg"));
-        ExplosionSprite = new Sprite(ExplosionScreen);
-        ExplosionSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        switch(selected){
+            case "NASA":
+                explosionScreen = new Texture(Gdx.files.internal("screen/landed.jpeg"));
+                break;
+            case "USSR":
+                explosionScreen = new Texture(Gdx.files.internal("space agencies/ussr1.jpg"));
+                break;
+            case "CNSP":
+                explosionScreen = new Texture(Gdx.files.internal("space agencies/china1.jpeg"));
+                break;
+            case "EASA":
+                explosionScreen = new Texture(Gdx.files.internal("space agencies/easa3.jpg"));
+                break;
+            case "SPACEX":
+                explosionScreen= new Texture(Gdx.files.internal("space agencies/spacex1.jpeg"));
+                break;
+        }
+
+        explosionSprite = new Sprite(explosionScreen);
+        explosionSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         restartButton = new TextButton("Restart", game.textButtonStyle);
         restartButton.setPosition((float) (Gdx.graphics.getWidth() / 2.7 ), (float) (Gdx.graphics.getHeight() / 4.5));
@@ -57,7 +75,7 @@ public class ExplosionScreen implements Screen {
     @Override
     public void render(float delta) {
         game.batch.begin();
-        ExplosionSprite.draw(game.batch);
+        explosionSprite.draw(game.batch);
 
         game.batch.end();
 
@@ -68,7 +86,7 @@ public class ExplosionScreen implements Screen {
 
         game.batch.begin();
 
-        ExplosionSprite.draw(game.batch, 1f);
+        explosionSprite.draw(game.batch, 1f);
 
         game.batch.end();
 
@@ -99,7 +117,7 @@ public class ExplosionScreen implements Screen {
     public void dispose() {
         stage.dispose();
         skin.dispose();
-        ExplosionScreen.dispose();
+        explosionScreen.dispose();
     }
 }
 

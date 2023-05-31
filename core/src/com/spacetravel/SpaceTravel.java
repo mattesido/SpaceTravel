@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.spacetravel.Game.GameCamera;
 import com.spacetravel.Game.ScrollingBackground;
+import com.spacetravel.screen.ChooserScreen;
 import com.spacetravel.screen.WelcomeScreen;
 
 public class SpaceTravel extends Game {
@@ -43,7 +44,7 @@ public class SpaceTravel extends Game {
 
 
         this.scrollingBackground = new ScrollingBackground();
-        this.setScreen(new WelcomeScreen(this));
+        this.setScreen(new ChooserScreen(this));
     }
 
     @Override
