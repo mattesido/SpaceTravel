@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.spacetravel.Game.GameCamera;
+import com.spacetravel.Game.ScrollingBackground;
 import com.spacetravel.screen.WelcomeScreen;
 
 public class SpaceTravel extends Game {
@@ -18,6 +20,12 @@ public class SpaceTravel extends Game {
     public final String stylePath = "style/star-soldier-ui.json";
     public SelectBox.SelectBoxStyle selectBoxStyle;
     public TextField.TextFieldStyle texFieldStyle;
+    public static final int WIDTH = 1920;
+    public static final int HEIGHT = 1080;
+    public ScrollingBackground scrollingBackground;
+    public GameCamera cam;
+
+
 
 
     @Override
@@ -31,12 +39,17 @@ public class SpaceTravel extends Game {
         selectBoxStyle = skin1.get("default", SelectBox.SelectBoxStyle.class);
         selectBoxStyle.font = bigFont;
         texFieldStyle = skin.get("default", TextField.TextFieldStyle.class);
+        cam = new GameCamera(WIDTH, HEIGHT);
 
+
+        this.scrollingBackground = new ScrollingBackground();
         this.setScreen(new WelcomeScreen(this));
     }
 
     @Override
     public void render() {
+        batch.setProjectionMatrix(cam.combined());
+
         super.render();
     }
 
@@ -45,6 +58,7 @@ public class SpaceTravel extends Game {
         batch.dispose();
         skin.dispose();
     }
+
 }
 
 

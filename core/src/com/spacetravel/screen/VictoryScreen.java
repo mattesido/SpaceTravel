@@ -5,8 +5,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.spacetravel.SpaceTravel;
 
 public class VictoryScreen implements Screen {
@@ -16,10 +19,9 @@ public class VictoryScreen implements Screen {
     OrthographicCamera camera;
 
     Skin skin;
-
     Texture victoryScreen;
     Sprite victorySprite;
-
+    TextButton restartButton;
 
     public VictoryScreen(final SpaceTravel game) {
         this.game = game;
@@ -29,9 +31,20 @@ public class VictoryScreen implements Screen {
         this.skin = new Skin(Gdx.files.internal(game.stylePath));
         this.camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
-        victoryScreen = new Texture(Gdx.files.internal("landed.jpeg"));
+        victoryScreen = new Texture(Gdx.files.internal("screen/landed.jpeg"));
         victorySprite = new Sprite(victoryScreen);
         victorySprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        restartButton = new TextButton("Restart Game", game.textButtonStyle);
+        restartButton.setPosition((float) (Gdx.graphics.getWidth() / 2.7 ), (float) (Gdx.graphics.getHeight() / 4.5));
+        restartButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
+                game.setScreen(new WelcomeScreen(game));
+            }
+        });
+        stage.addActor(restartButton);
     }
 
     @Override

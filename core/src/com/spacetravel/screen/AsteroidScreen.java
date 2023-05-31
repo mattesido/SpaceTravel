@@ -1,17 +1,22 @@
 package com.spacetravel.screen;
 
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.Screen;
+
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
 import com.spacetravel.SpaceTravel;
+
+
 
 public class AsteroidScreen implements Screen {
 
@@ -46,6 +51,7 @@ public class AsteroidScreen implements Screen {
                         }
                 });
 
+
                 stage.addActor(startButton);
         }
 
@@ -68,13 +74,9 @@ public class AsteroidScreen implements Screen {
 
                 game.batch.begin();
 
-                asteroidGameSprite.draw(game.batch, 1f);
-
                 game.batch.end();
 
-                stage.draw();
         }
-
         @Override
         public void resize(int width, int height) {
 

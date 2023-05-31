@@ -44,12 +44,15 @@ public class PlanetScreen implements Screen {
         planetSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         oxygen = new TextField("oxygen", game.texFieldStyle);
+
         oxygen.setPosition((float) (Gdx.graphics.getWidth()*4/5), (float) (Gdx.graphics.getHeight() * 4/10));
+
 
         propellent = new TextField("fluid", game.texFieldStyle);
         propellent.setPosition((float) (Gdx.graphics.getWidth()* 4/5), (float) (Gdx.graphics.getHeight() * 3.5/10));
 
-        velocity = new TextField("velocity", game.texFieldStyle);
+       velocity = new TextField("velocity", game.texFieldStyle);
+
         velocity.setPosition((float) (Gdx.graphics.getWidth() *4/5), (float) (Gdx.graphics.getHeight() * 3/10));
 
         exitButton = new TextButton("Exit", game.textButtonStyle);
@@ -72,59 +75,74 @@ public class PlanetScreen implements Screen {
                 case "Mercury":
                     if (Integer.parseInt(oxygen.getText()) == 90 && Integer.parseInt(propellent.getText()) == 180 && Integer.parseInt(velocity.getText()) == 70){
                         game.setScreen(new AsteroidScreen(game));
+                        System.out.println("ciao");
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
 
                 case "Venus":
                     if (Integer.parseInt(oxygen.getText()) == 80 && Integer.parseInt(propellent.getText()) == 170 && Integer.parseInt(velocity.getText()) == 40){
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
-
                 case "Moon":
-                    if (Integer.parseInt(oxygen.getText()) == 0 && Integer.parseInt(propellent.getText()) == 0 && Integer.parseInt(velocity.getText()) == 0) {
+                    if (Integer.parseInt(oxygen.getText()) == 30 && Integer.parseInt(propellent.getText()) == 80 && Integer.parseInt(velocity.getText()) == 40) {
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new AsteroidScreen(game));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
 
                 case "Mars":
-                    if(Integer.parseInt(oxygen.getText()) == 30 && Integer.parseInt(propellent.getText()) == 80 && Integer.parseInt(velocity.getText()) == 40){
+                    if(Integer.parseInt(oxygen.getText()) == 30 && Integer.parseInt(propellent.getText()) == 80 && Integer.parseInt(velocity.getText()) == 50){
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
 
                 case "Jupiter":
                     if (Integer.parseInt(oxygen.getText()) == 130 && Integer.parseInt(propellent.getText()) == 230 && Integer.parseInt(velocity.getText()) == 70){
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
 
                 case "Saturn":
                     if (Integer.parseInt(oxygen.getText()) == 180 && Integer.parseInt(propellent.getText()) == 280 && Integer.parseInt(velocity.getText()) == 90) {
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
 
                 case "Uranus":
                     if ((Integer.parseInt(oxygen.getText()) == 230) && (Integer.parseInt(propellent.getText()) == 330) && (Integer.parseInt(velocity.getText()) == 110)){
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
 
                 case "Neptune":
                     if (Integer.parseInt(oxygen.getText()) == 240 && Integer.parseInt(propellent.getText()) == 340 && Integer.parseInt(velocity.getText()) == 130){
                         game.setScreen(new AsteroidScreen(game));
                     }
-                    game.setScreen(new ExplosionScreen(game,planetName));
+                    else {
+                        game.setScreen(new ExplosionScreen(game, planetName));
+                    }
                     break;
-
             }
                 }
 
