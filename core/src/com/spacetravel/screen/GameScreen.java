@@ -1,10 +1,7 @@
 package com.spacetravel.screen;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
 import com.spacetravel.Game.Asteroid;
 import com.spacetravel.Game.Bullet;
 import com.spacetravel.Game.CollisionRect;
@@ -47,7 +44,7 @@ public class GameScreen implements Screen {
 	float asteroidSpawnTimer;
 
 	Random random;
-	TextButton restartButton;
+
 	SpaceTravel game;
 
 	ArrayList<Bullet> bullets;
@@ -55,7 +52,7 @@ public class GameScreen implements Screen {
 	ArrayList<Explosion> explosions;
 
 	Texture blank;
-	Stage stage = new Stage();
+
 
 	BitmapFont scoreFont;
 
@@ -104,7 +101,7 @@ public class GameScreen implements Screen {
 		game.scrollingBackground.setSpeedFixed(false);
 		explosions = new ArrayList<>();
 		x =(float)( (SpaceTravel.WIDTH / 2) - (SHIP_WIDTH / 2));
-		stage.addActor(restartButton);
+
 
 	}
 
@@ -252,15 +249,7 @@ public class GameScreen implements Screen {
 				//If health is depleted,
 				if (health <= 0) {
 					this.dispose();
-					restartButton = new TextButton("Restart", game.textButtonStyle);
-					restartButton.setPosition((float) (Gdx.graphics.getWidth() / 2.7 ), (float) (Gdx.graphics.getHeight() / 4.5));
-					restartButton.addListener(new ChangeListener() {
-						@Override
-						public void changed(ChangeEvent event, Actor actor) {
-
-							game.setScreen(new GameScreen(game));
-						}
-					});
+					game.setScreen(new PlayScreen(game));
 
 				}
 			}

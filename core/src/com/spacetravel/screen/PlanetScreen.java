@@ -23,6 +23,9 @@ public class PlanetScreen implements Screen {
     TextField velocity;
     Button checkButton;
     final SpaceTravel game;
+    Label fuel;
+    Label vel;
+    Label oxy;
     Stage stage;
     OrthographicCamera camera;
     Dialog help;
@@ -43,17 +46,21 @@ public class PlanetScreen implements Screen {
         planetSprite = new Sprite(planetScreen);
         planetSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        oxygen = new TextField("oxygen", game.texFieldStyle);
+        oxy = new Label("oxygen",skin);
+        oxy.setPosition((float) (Gdx.graphics.getWidth()* 7.6/10), (float) (Gdx.graphics.getHeight() * 4/10));
 
-        oxygen.setPosition((float) (Gdx.graphics.getWidth()*4/5), (float) (Gdx.graphics.getHeight() * 4/10));
+        oxygen = new TextField("", game.texFieldStyle);
+        oxygen.setPosition((float) (Gdx.graphics.getWidth()*8.5/10), (float) (Gdx.graphics.getHeight() * 4/10));
 
+        fuel = new Label("propellent",skin);
+        fuel.setPosition((float) (Gdx.graphics.getWidth()* 7.6/10), (float) (Gdx.graphics.getHeight() * 3.5/10));
+        propellent = new TextField("", game.texFieldStyle);
+        propellent.setPosition((float) (Gdx.graphics.getWidth()* 8.5/10), (float) (Gdx.graphics.getHeight() * 3.5/10));
 
-        propellent = new TextField("fluid", game.texFieldStyle);
-        propellent.setPosition((float) (Gdx.graphics.getWidth()* 4/5), (float) (Gdx.graphics.getHeight() * 3.5/10));
-
-       velocity = new TextField("velocity", game.texFieldStyle);
-
-        velocity.setPosition((float) (Gdx.graphics.getWidth() *4/5), (float) (Gdx.graphics.getHeight() * 3/10));
+        vel = new Label("velocity",skin);
+        vel.setPosition((float) (Gdx.graphics.getWidth()* 7.6/10), (float) (Gdx.graphics.getHeight() * 3/10));
+       velocity = new TextField("", game.texFieldStyle);
+       velocity.setPosition((float) (Gdx.graphics.getWidth() *8.5/10), (float) (Gdx.graphics.getHeight() * 3/10));
 
         exitButton = new TextButton("Exit", game.textButtonStyle);
         exitButton.setPosition((float) (Gdx.graphics.getWidth()/18), (float) (Gdx.graphics.getHeight() * 8.4/10));
@@ -66,7 +73,14 @@ public class PlanetScreen implements Screen {
 
        checkButton = new TextButton("Check", game.textButtonStyle);
        checkButton.setPosition((float) (Gdx.graphics.getWidth()*7.4/10), (float) (Gdx.graphics.getHeight() * 2/10));
-        checkButton.addListener(new ChangeListener() {
+
+       oxygen.setTextFieldFilter(new TextField.TextFieldFilter.DigitsOnlyFilter());
+       propellent.setTextFieldFilter(new TextField.TextFieldFilter.DigitsOnlyFilter());
+       velocity.setTextFieldFilter(new TextField.TextFieldFilter.DigitsOnlyFilter());
+
+
+
+       checkButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
@@ -75,7 +89,7 @@ public class PlanetScreen implements Screen {
                 case "Mercury":
                     if (Integer.parseInt(oxygen.getText()) == 90 && Integer.parseInt(propellent.getText()) == 180 && Integer.parseInt(velocity.getText()) == 70){
                         game.setScreen(new PlayScreen(game));
-                        System.out.println("ciao");
+
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -228,7 +242,9 @@ public class PlanetScreen implements Screen {
             }
         });
 
-
+        stage.addActor(oxy);
+        stage.addActor(fuel);
+        stage.addActor(vel);
         stage.addActor(exitButton);
         stage.addActor(propellent);
         stage.addActor(velocity);
