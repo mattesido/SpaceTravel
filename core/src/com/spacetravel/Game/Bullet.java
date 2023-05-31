@@ -23,7 +23,7 @@ public class Bullet {
 		this.rect = new CollisionRect(x, y, WIDTH, HEIGHT);
 		
 		if (texture == null)
-			texture = new Texture("gameassets/bullet.png");
+			texture = new Texture("game/bullet.png");
 	}
 	
 	public void update (float deltaTime) {

@@ -39,7 +39,7 @@ public class PlanetScreen implements Screen {
         this.skin = new Skin(Gdx.files.internal(game.stylePath));
         this.camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
-        planetScreen = new Texture(Gdx.files.internal("planets/" + planetName.toUpperCase() + ".jpeg"));
+        planetScreen = new Texture(Gdx.files.internal("planets/" + planetName.toUpperCase() + ".jpg"));
         planetSprite = new Sprite(planetScreen);
         planetSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -65,7 +65,7 @@ public class PlanetScreen implements Screen {
         });
 
        checkButton = new TextButton("Check", game.textButtonStyle);
-       checkButton.setPosition((float) (Gdx.graphics.getWidth()*7/10), (float) (Gdx.graphics.getHeight() * 2/10));
+       checkButton.setPosition((float) (Gdx.graphics.getWidth()*7.4/10), (float) (Gdx.graphics.getHeight() * 2/10));
         checkButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -74,7 +74,7 @@ public class PlanetScreen implements Screen {
 
                 case "Mercury":
                     if (Integer.parseInt(oxygen.getText()) == 90 && Integer.parseInt(propellent.getText()) == 180 && Integer.parseInt(velocity.getText()) == 70){
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                         System.out.println("ciao");
                     }
                     else {
@@ -84,7 +84,7 @@ public class PlanetScreen implements Screen {
 
                 case "Venus":
                     if (Integer.parseInt(oxygen.getText()) == 80 && Integer.parseInt(propellent.getText()) == 170 && Integer.parseInt(velocity.getText()) == 40){
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -92,7 +92,7 @@ public class PlanetScreen implements Screen {
                     break;
                 case "Moon":
                     if (Integer.parseInt(oxygen.getText()) == 30 && Integer.parseInt(propellent.getText()) == 80 && Integer.parseInt(velocity.getText()) == 40) {
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -101,7 +101,7 @@ public class PlanetScreen implements Screen {
 
                 case "Mars":
                     if(Integer.parseInt(oxygen.getText()) == 30 && Integer.parseInt(propellent.getText()) == 80 && Integer.parseInt(velocity.getText()) == 50){
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -110,7 +110,7 @@ public class PlanetScreen implements Screen {
 
                 case "Jupiter":
                     if (Integer.parseInt(oxygen.getText()) == 130 && Integer.parseInt(propellent.getText()) == 230 && Integer.parseInt(velocity.getText()) == 70){
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -119,7 +119,7 @@ public class PlanetScreen implements Screen {
 
                 case "Saturn":
                     if (Integer.parseInt(oxygen.getText()) == 180 && Integer.parseInt(propellent.getText()) == 280 && Integer.parseInt(velocity.getText()) == 90) {
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -128,7 +128,7 @@ public class PlanetScreen implements Screen {
 
                 case "Uranus":
                     if ((Integer.parseInt(oxygen.getText()) == 230) && (Integer.parseInt(propellent.getText()) == 330) && (Integer.parseInt(velocity.getText()) == 110)){
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -137,7 +137,7 @@ public class PlanetScreen implements Screen {
 
                 case "Neptune":
                     if (Integer.parseInt(oxygen.getText()) == 240 && Integer.parseInt(propellent.getText()) == 340 && Integer.parseInt(velocity.getText()) == 130){
-                        game.setScreen(new AsteroidScreen(game));
+                        game.setScreen(new PlayScreen(game));
                     }
                     else {
                         game.setScreen(new ExplosionScreen(game, planetName));
@@ -150,20 +150,22 @@ public class PlanetScreen implements Screen {
 
         });
 
+        help = new Dialog("Set Up Spaceship",skin);
         helpButton = new TextButton("Help", game.textButtonStyle);
         helpButton.setPosition((float) (Gdx.graphics.getWidth()* 2/3), (float) (Gdx.graphics.getHeight() * 8.6/10));
         helpButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                help = new Dialog("Set Up Spaceship",skin);
+
                 switch(planetName){
 
                     case "Mercury":
                         help.setResizable(false);
-                        help.text(" PLANETS : HOW TO CORRECTLY SET UP THE SHIP\n");
+                        help.text(" PLANETS : HOW TO  SET UP THE SHIP \n");
                         help.text(" Mercury : 80 < propellent < 100, 150 < velocity < 200 and 50 < oxygen < 70");
                         help.button("Ok!", true, game.textButtonStyle);
                         help.setPosition(100, 100);
+
                         break;
                     case "Venus":
                         help.setResizable(false);
@@ -221,6 +223,8 @@ public class PlanetScreen implements Screen {
                         break;
 
                 }
+
+                help.show(stage);
             }
         });
 

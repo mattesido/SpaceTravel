@@ -8,7 +8,8 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("SpaceTravel");
-		config.setWindowedMode(1920,1080);
+		config.setWindowIcon("logo/logo.png");
+		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new SpaceTravel(), config);
 	}
 }

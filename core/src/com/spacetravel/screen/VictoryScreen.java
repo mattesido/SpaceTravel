@@ -36,7 +36,7 @@ public class VictoryScreen implements Screen {
         victorySprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         restartButton = new TextButton("Restart Game", game.textButtonStyle);
-        restartButton.setPosition((float) (Gdx.graphics.getWidth() / 2.7 ), (float) (Gdx.graphics.getHeight() / 4.5));
+        restartButton.setPosition((float) (Gdx.graphics.getWidth() / 3 ), (float) (Gdx.graphics.getHeight() / 4.5));
         restartButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

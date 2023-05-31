@@ -18,7 +18,7 @@ public class ScrollingBackground {
 	boolean speedFixed;
 	
 	public ScrollingBackground () {
-		image = new Texture("screen/space.png");
+		image = new Texture("screen/space.jpg");
 		
 		y1 = 0;
 		y2 = image.getHeight();

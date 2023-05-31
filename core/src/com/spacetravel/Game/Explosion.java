@@ -24,7 +24,7 @@ public class Explosion {
 		statetime = 0;
 		
 		if (anim == null)
-			anim = new Animation(FRAME_LENGTH, TextureRegion.split(new Texture("gameassets/explosion.png"), IMAGE_SIZE, IMAGE_SIZE)[0]);
+			anim = new Animation(FRAME_LENGTH, TextureRegion.split(new Texture("game/explosion.png"), IMAGE_SIZE, IMAGE_SIZE)[0]);
 	}
 	
 	public void update (float deltatime) {

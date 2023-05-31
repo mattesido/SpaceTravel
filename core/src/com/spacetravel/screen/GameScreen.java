@@ -1,6 +1,7 @@
 package com.spacetravel.screen;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -47,7 +48,6 @@ public class GameScreen implements Screen {
 
 	Random random;
 	TextButton restartButton;
-	String planetName;
 	SpaceTravel game;
 
 	ArrayList<Bullet> bullets;
@@ -67,16 +67,17 @@ public class GameScreen implements Screen {
 
 	boolean showControls = true;
 
+
 	public GameScreen(SpaceTravel game) {
 		this.game = game;
 		y = 15;
 		bullets = new ArrayList<>();
 		asteroids = new ArrayList<>();
-		scoreFont = new BitmapFont(Gdx.files.internal("gameassets/fonts/score.fnt"));
+		scoreFont = new BitmapFont(Gdx.files.internal("game/fonts/score.fnt"));
 
 		playerRect = new CollisionRect(0, 0, SHIP_WIDTH, SHIP_HEIGHT);
 
-		blank = new Texture("gameassets/blank.png");
+		blank = new Texture("game/blank.png");
 
 
 		score = 0;
@@ -90,7 +91,7 @@ public class GameScreen implements Screen {
 		rollTimer = 0;
 		rolls = new Animation[5];
 
-		TextureRegion[][] rollSpriteSheet = TextureRegion.split(new Texture("gameassets/ship.png"),
+		TextureRegion[][] rollSpriteSheet = TextureRegion.split(new Texture("game/ship.png"),
 				SHIP_WIDTH_PIXEL,
 				SHIP_HEIGHT_PIXEL);
 
@@ -103,7 +104,8 @@ public class GameScreen implements Screen {
 		game.scrollingBackground.setSpeedFixed(false);
 		explosions = new ArrayList<>();
 		x =(float)( (SpaceTravel.WIDTH / 2) - (SHIP_WIDTH / 2));
-		//stage.addActor(restartButton);
+		stage.addActor(restartButton);
+
 	}
 
 	@Override
@@ -256,7 +258,7 @@ public class GameScreen implements Screen {
 						@Override
 						public void changed(ChangeEvent event, Actor actor) {
 
-							game.setScreen(new PlanetScreen(game,planetName));
+							game.setScreen(new GameScreen(game));
 						}
 					});
 
